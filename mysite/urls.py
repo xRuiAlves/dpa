@@ -16,9 +16,10 @@ Including another URLconf
 
 from django.urls import include, path
 from . import views
+from django_cloud_deployer import runInPaaS, runInFaaS
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('polls/', include('polls.urls')),
-    path('info/', include('info.urls')),
+    runInPaaS(path('info/', include('info.urls'))),
 ]
